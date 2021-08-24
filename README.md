@@ -1,3 +1,3 @@
 # ModelBrick
 
-Pypi Packages for model_brick
+This is a package for ML model brick
