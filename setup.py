@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
     
 setuptools.setup(
     name = 'modelbrick',
-    version='0.0.1',
+    version='0.0.4',
     author='Jimmy Su',
     author_email = 'jim83531@gmail.com',
     description = 'ML model brick',

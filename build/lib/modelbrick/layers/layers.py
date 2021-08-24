@@ -1,9 +1,11 @@
 import tensorflow as tf
 
-class TransLayer(tf.keras.layers.Layer):
+class TransformLayer(tf.keras.layers.Layer):
 
-    def __init__(self, features_columns):
-        super(TransLayer, self).__init__()
+    def __init__(self, features_columns, features_list):
+        super(TransformLayer, self).__init__()
+        self.sparse_features_list =  features_list['sparse']
+        self.dense_features_list = features_list['dense']
         self._tra_sp_col, self._tra_nu_col, self._gam_sp_col, self._gam_nu_col = self.get_feature_col(features_columns)
         self.tra_sparse_features = tf.keras.layers.DenseFeatures(self._tra_sp_col)
         self.tra_dense_features = tf.keras.layers.DenseFeatures(self._tra_nu_col)
@@ -18,12 +20,12 @@ class TransLayer(tf.keras.layers.Layer):
             k = fea_col['trans'][i].key
             key_tra[k]=i
         tra_sp_col = []
-        for col in tensordata.sparse_features['trans']:
+        for col in self.sparse_features_list['trans']:
             k = key_tra.get(col)
             embedded = tf.feature_column.embedding_column(fea_col['trans'][k], dimension=1)
             tra_sp_col.append(embedded)
         tra_nu_col = []
-        for col in tensordata.dense_features['trans']:
+        for col in self.dense_features_list['trans']:
             k = key_tra.get(col)
             tra_nu_col.append(fea_col['trans'][k])
 
@@ -33,12 +35,12 @@ class TransLayer(tf.keras.layers.Layer):
             k = fea_col['games'][i].name
             key_gam[k]=i
         gam_sp_col = []
-        for col in tensordata.sparse_features['games']:
+        for col in self.sparse_features_list['games']:
             k = key_gam.get(col)
             embedded = tf.feature_column.embedding_column(fea_col['games'][k], dimension=1)
             gam_sp_col.append(embedded)
         gam_nu_col = []
-        for col in tensordata.dense_features['games']: 
+        for col in self.dense_features_list['games']: 
             if col != 'trans_id':
                 k = key_gam.get(col)
                 gam_nu_col.append(fea_col['games'][k])

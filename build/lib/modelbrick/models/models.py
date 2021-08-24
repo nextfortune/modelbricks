@@ -1,11 +1,11 @@
 import tensorflow as tf
-from ..layers.layers import TransLayer
+from ..layers.layers import TransformLayer
 
 class RucModel(tf.keras.models.Model):
 
-    def __init__(self, features_columns):
+    def __init__(self, features_columns, features_list):
         super(RucModel, self).__init__()
-        self.trans_layer = TransLayer(features_columns)
+        self.trans_layer = TransformLayer(features_columns, features_list)
         self.dense_layer = tf.keras.layers.Dense(49, activation='relu')
         self.dense_layer2 = tf.keras.layers.Dense(25, activation='relu')
         self.output_layer = tf.keras.layers.Dense(1, activation='sigmoid')
