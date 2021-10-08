@@ -14,7 +14,7 @@ setuptools.setup(
     description = 'ML model brick',
     long_description = long_description,
     long_description_content__type='markdown',
-    url = 'https://git.owdev.net/Jimmy/modelbricks.git',
+    url = 'https://github.com/nextfortune/modelbricks.git',
     packages = setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
