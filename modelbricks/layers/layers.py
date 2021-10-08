@@ -1,3 +1,4 @@
+"""Create Custom Layers."""
 import tensorflow as tf
 
 class TransformLayer(tf.keras.layers.Layer):
@@ -11,11 +12,11 @@ class TransformLayer(tf.keras.layers.Layer):
           ```python
           dim_type = {0: 'non_sequential', 1:'sequential'}
           features_columns = {
-              'league_id' = [tf.feature_column.categorical_column_with_vocabulary_list],
-              'odds' = [feature_column.numeric_column],
+              'foo': [tf.feature_column.categorical_column_with_vocabulary_list],
+              'bar': [feature_column.numeric_column],
           }
         """
-        super(TransformLayer, self).__init__()
+        super().__init__()
         self.dim_type = dim_type
 
         self.features_layers = {}
@@ -55,7 +56,23 @@ class TransformLayer(tf.keras.layers.Layer):
                             features_columns['sequential'][dim][dcat][col], trainable=True
                         )
 
+    def get_config(self):
+        """Overwirte original get_config function to get config of custom objects
+        """
+        config = super().get_config().copy()
+        config.update({
+            'features_layers': self.features_layers,
+            'dim_type': self.dim_type,
+        })
+
+        return config
+
     def call(self, inputs):
+        """Define data flow for TransformLayer
+        Args:
+            inputs: A tuple for inputs (dim1,dim2)
+        """
+
         trainable_dic = {}
         for dim_type in self.dim_type.keys():
             if self.dim_type[dim_type] == 'non_sequential':
@@ -64,20 +81,22 @@ class TransformLayer(tf.keras.layers.Layer):
                     for key in sorted(inputs[dim_type].keys())
                 }
                 trainable_dic[dim_type] = tf.concat(
-                    [fea_ten_dic[key] for key in sorted(fea_ten_dic.keys())], axis=1
+                    [fea_ten_dic[key] for key in sorted(fea_ten_dic.keys())], 1,
+                    name='non_seq_concat'
                 )
             else:
                 fea_ten_dic = {
                     key: tf.reduce_mean(
                         self.features_layers[key]({key: inputs[dim_type][key].to_sparse()})[0],
-                        axis=1
+                        1
                     )
                     for key in sorted(inputs[dim_type].keys())
                 }
                 trainable_dic[dim_type] = tf.concat(
-                    [fea_ten_dic[key] for key in sorted(fea_ten_dic.keys())],axis=1
+                    [fea_ten_dic[key] for key in sorted(fea_ten_dic.keys())], 1,
+                    name='seq_concat'
                 )
 
-        trainable = tf.concat([trainable_dic[key] for key in sorted(trainable_dic.keys())],axis=1)
+        trainable = tf.concat([trainable_dic[key] for key in sorted(trainable_dic.keys())], 1)
 
         return trainable
