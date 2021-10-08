@@ -1,8 +1,11 @@
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
 import setuptools
 
-with open('README.md', 'r') as fh:
-    long_description = fh.read()
-    
+with open('README.md', 'r', encoding="utf-8") as readme:
+    long_description = readme.read()
+
 setuptools.setup(
     name = 'modelbricks',
     version='0.1.0',
@@ -20,7 +23,6 @@ setuptools.setup(
     ],
     python_requires='>=3.8',
     install_requires=[
-        'tensorflow>=2.5.0'
+        'tensorflow>=2.6.0'
     ]
-    
 )
