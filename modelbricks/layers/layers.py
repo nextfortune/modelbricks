@@ -2,9 +2,9 @@
 import tensorflow as tf
 
 class TransformLayer(tf.keras.layers.Layer):
-    """Creates a Transform Layers."""
+    """Creates Transform Layers."""
     def __init__(self, features_columns, dim_type):
-        """Creates a Transform Layers.
+        """Creates Transform Layers.
         Args:
           features_columns: A dictionary that store tensorflow features columns
                            (like numeric_column or categorical_column_with_vocabulary_list)
