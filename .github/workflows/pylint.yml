@@ -28,7 +28,7 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         cd
-        python -m pylint --fail-under=10 `find -regextype egrep -regex '(.*.py)$'`
+        python -m pylint modelbricks
   
   unittest:
     name: Unit test on code
