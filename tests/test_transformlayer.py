@@ -1,9 +1,7 @@
 """Unit Test for TransformLayer"""
 import tensorflow as tf
-from modelbricks.layers.layers import TransformLayer
-
-# import generate_fake_data
 import common_base_test as cbt
+from modelbricks.layers.layers import TransformLayer
 
 class TestTransformLayer(cbt.TestBase):
     """Test Case for Transform Layer"""

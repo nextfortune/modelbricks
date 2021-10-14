@@ -138,4 +138,5 @@ class TestBase(tf.test.TestCase):
              }
             }
         }
+
         self.assertEqual(excepted_feature_columns, self.feature_columns)

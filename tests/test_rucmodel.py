@@ -1,10 +1,8 @@
 """Unit Test for Rucmodel"""
 import tensorflow as tf
+import common_base_test as cbt
 from modelbricks.models.models import RucModel
 from modelbricks.metrics.metrics import F1Score
-
-# import generate_fake_data
-import common_base_test as cbt
 
 class Testrucmodel(cbt.TestBase):
     """Test Rucmodel test case"""
