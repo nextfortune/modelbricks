@@ -1,13 +1,13 @@
 """Unit Test for TransformLayer"""
 import tensorflow as tf
-import common_base_test as cbt
+from modelbricks.tests import common_base_test as cbt
 from modelbricks.layers.layers import TransformLayer
 
 class TestTransformLayer(cbt.TestBase):
     """Test Case for Transform Layer"""
 
-    def setUp(self):
-        super().setUp()
+    def setup(self):
+        super().setup()
 
         self.dim = {0: 'non_sequential', 1:'sequential'}
 

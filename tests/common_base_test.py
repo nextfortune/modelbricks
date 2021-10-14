@@ -1,11 +1,11 @@
 """Unit test base method"""
 import tensorflow as tf
-import generate_fake_data
+from modelbricks.tests import generate_fake_data
 
 class TestBase(tf.test.TestCase):
     """Test Case for Commmon test"""
-    def setUp(self):
-        super().setUp()
+    def setup(self):
+        super().setup()
 
         datatrans = generate_fake_data.generate_fake_data()
         self.dataset = datatrans.to_dataset()

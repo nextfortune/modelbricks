@@ -1,13 +1,13 @@
 """Unit Test for Rucmodel"""
 import tensorflow as tf
-import common_base_test as cbt
+from modelbricks.tests import common_base_test as cbt
 from modelbricks.models.models import RucModel
 from modelbricks.metrics.metrics import F1Score
 
 class Testrucmodel(cbt.TestBase):
     """Test Rucmodel test case"""
-    def setUp(self):
-        super().setUp()
+    def setup(self):
+        super().setup()
 
         self.dim = {0: 'non_sequential', 1:'sequential'}
         self.label = 'bad'
