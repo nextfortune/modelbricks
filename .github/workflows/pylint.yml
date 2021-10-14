@@ -25,6 +25,7 @@ jobs:
         pip install -i https://test.pypi.org/simple/ datatransformer
         pip install faker
         pip install pylint
+        echo pwd
     - name: Analysing the code with pylint
       run: |
         cd ..
