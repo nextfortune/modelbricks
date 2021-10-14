@@ -4,6 +4,7 @@ from modelbricks.tests import generate_fake_data
 
 class TestBase(tf.test.TestCase):
     """Test Case for Commmon test"""
+
     def setup(self):
         super().setup()
 
