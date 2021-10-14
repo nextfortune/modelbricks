@@ -6,6 +6,7 @@ import common_base_test as cbt
 
 class TestTransformLayer(cbt.TestBase):
     """Test Case for Transform Layer"""
+
     def setUp(self):
         super().setUp()
 
