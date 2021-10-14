@@ -1,6 +1,6 @@
 """Unit test base method"""
 import tensorflow as tf
-import generate_fake_data
+from modelbricks.tests import generate_fake_data
 
 class TestBase(tf.test.TestCase):
     """Test Case for Commmon test"""
