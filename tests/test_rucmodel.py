@@ -3,21 +3,18 @@ import tensorflow as tf
 from modelbricks.models.models import RucModel
 from modelbricks.metrics.metrics import F1Score
 
-import generate_fake_data
+# import generate_fake_data
 import common_base_test as cbt
 
 class Testrucmodel(cbt.TestBase):
     """Test Rucmodel test case"""
     def setUp(self):
         super().setUp()
-        datatrans = generate_fake_data.generate_fake_data()
 
-        self.dataset = datatrans.to_dataset()
-        self.features_columns = datatrans.feature_columns
         self.dim = {0: 'non_sequential', 1:'sequential'}
         self.label = 'bad'
 
-        self.model = RucModel(self.features_columns, self.dim, self.label)
+        self.model = RucModel(self.feature_columns, self.dim, self.label)
         loss_object = tf.keras.losses.BinaryCrossentropy()
         optimizer_adae = tf.keras.optimizers.Adadelta(learning_rate=1.0,rho=0.90)
         #model compile

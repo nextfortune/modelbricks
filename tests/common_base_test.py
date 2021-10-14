@@ -10,7 +10,6 @@ class TestBase(tf.test.TestCase):
         datatrans = generate_fake_data.generate_fake_data()
         self.dataset = datatrans.to_dataset()
         self.feature_columns = datatrans.feature_columns
-        self.dim = {0: 'non_sequential', 1:'sequential'}
 
     def test_dataset_elementspec(self):
         """Test data input element spec"""
