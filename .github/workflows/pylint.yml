@@ -1,10 +1,32 @@
 name: Pylint
 
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
-  build:
-
+  lint:
+    name: pylint test on code
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pylint
+    - name: Analysing the code with pylint
+      run: |
+        python -m pylint --fail-under=10 `find -regextype egrep -regex '(.*.py)$'`
+  
+  unittest:
+    name: Unit test on code
+    needs: lint
     runs-on: ubuntu-latest
 
     steps:
@@ -19,10 +41,6 @@ jobs:
         pip install modelbricks
         pip install vaex
         pip install -i https://test.pypi.org/simple/ datatransformer
-        pip install pylint
         pip install faker
-    - name: Analysing the code with pylint
-      run: |
-        python -m pylint --fail-under=10 `find -regextype egrep -regex '(.*.py)$'`
     - name: Unit testing the code
       run: python tests/test_*.py
