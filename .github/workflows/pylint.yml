@@ -19,7 +19,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install modelbricks
         pip install vaex
         pip install -i https://test.pypi.org/simple/ datatransformer
         pip install faker
@@ -42,7 +41,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install modelbricks
         pip install vaex
         pip install -i https://test.pypi.org/simple/ datatransformer
         pip install faker
