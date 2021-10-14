@@ -25,4 +25,4 @@ jobs:
       run: |
         python -m pylint --fail-under=10 `find -regextype egrep -regex '(.*.py)$'`
     - name: Unit testing the code
-      run: python tests/*.py
+      run: python tests/test_*.py
