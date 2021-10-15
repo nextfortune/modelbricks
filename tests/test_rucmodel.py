@@ -27,7 +27,7 @@ class Testrucmodel(cbt.TestBase):
             ]
         )
 
-    def testrucmodeloutputshape(self):
+    def test_rucmodel_outputshape(self):
         """test model output shape"""
         #pylint: disable=W0612
         for (trans, games), lables in self.dataset.take(1):
@@ -38,7 +38,7 @@ class Testrucmodel(cbt.TestBase):
 
         self.assertEqual(expected_output_shape, output.shape)
 
-    def testtrainingweightschange(self):
+    def test_training_weights_change(self):
         """test model weights changes after training"""
         train_dataset = self.dataset.take(10).batch(10)
         before_weights = self.model.weights

@@ -18,7 +18,7 @@ class TestTransformLayer(cbt.TestBase):
             self.trans_from = TransformLayer(self.feature_columns, self.dim)
             self.trans_from.build(inputs)
 
-    def testtransformlayeroutputshape(self):
+    def test_transformlayer_outputshape(self):
         """test Transformer Layer output shape"""
         #pylint: disable=W0612
         for input_x, labels in self.dataset.take(1):
