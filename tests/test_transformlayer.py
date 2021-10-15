@@ -1,4 +1,5 @@
 """Unit Test for TransformLayer"""
+import unittest
 import tensorflow as tf
 from modelbricks.layers.layers import TransformLayer
 
@@ -25,6 +26,4 @@ class TestTransformLayer(cbt.TestBase):
 
         expected_output_shape = tf.TensorShape([1,38])
 
-        self.assertAllEqual(expected_output_shape, output.shape)
-
-tf.test.main()
+        self.assertEqual(expected_output_shape, output.shape)

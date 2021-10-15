@@ -1,8 +1,9 @@
 """Unit test base method"""
+import unittest
 import tensorflow as tf
 import generate_fake_data
 
-class TestBase(tf.test.TestCase):
+class TestBase(unittest.TestCase):
     """Test Case for Commmon test"""
 
     def setUp(self):

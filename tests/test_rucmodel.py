@@ -1,4 +1,5 @@
 """Unit Test for Rucmodel"""
+import unittest
 from modelbricks.models.models import RucModel
 from modelbricks.metrics.metrics import F1Score
 
@@ -41,9 +42,7 @@ class Testrucmodel(cbt.TestBase):
         """test model weights changes after training"""
         train_dataset = self.dataset.take(10).batch(10)
         before_weights = self.model.weights
-        self.model.fit(train_dataset, epochs = 1)
+        hist = self.model.fit(train_dataset, epochs = 1, verbose=0).history
         after_weights = self.model.weights
 
         self.assertNotEqual(before_weights, after_weights)
-
-tf.test.main()
