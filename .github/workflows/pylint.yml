@@ -47,6 +47,7 @@ jobs:
         pip install -e .
         pip install datatransformer
         pip install faker
+        pip install pytest
     - name: Unit testing the code
       run: |
         cd 
