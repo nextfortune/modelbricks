@@ -50,5 +50,4 @@ jobs:
         pip install pytest
     - name: Unit testing the code
       run: |
-        cd 
-        python -m pytest modelbricks --verbosity=2
+        pytest --verbosity=2
