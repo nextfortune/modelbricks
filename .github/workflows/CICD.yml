@@ -4,8 +4,6 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/**'
-  release:
-    types: [created]
 
 jobs:
   lint:
@@ -78,6 +76,7 @@ jobs:
           repository_url: https://test.pypi.org/legacy/ 
   pypi:
     name: Publish package to PYPI
+    needs: unittest
     runs-on: ubuntu-latest
     
     steps:
