@@ -5,7 +5,6 @@ import generate_fake_data
 
 class TestBase(unittest.TestCase):
     """Test Case for Commmon test"""
-
     def setUp(self):
         super().setUp()
 
