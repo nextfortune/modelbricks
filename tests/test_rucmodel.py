@@ -12,7 +12,7 @@ class Testrucmodel(cbt.TestBase):
         super().setUp()
 
         self.dim = {0: 'non_sequential', 1:'sequential'}
-        self.label = 'bad'
+        self.label = 'output_1'
 
         self.model = RucModel(self.feature_columns, self.dim, self.label)
         loss_object = tf.keras.losses.BinaryCrossentropy()
