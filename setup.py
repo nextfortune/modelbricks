@@ -8,7 +8,7 @@ with open('README.md', 'r', encoding="utf-8") as readme:
 
 setuptools.setup(
     name = 'modelbricks',
-    version='0.1.0',
+    version='0.1.1',
     author='Jimmy Su',
     author_email = 'jim83531@gmail.com',
     description = 'ML model brick',

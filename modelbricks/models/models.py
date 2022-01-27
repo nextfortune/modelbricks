@@ -58,6 +58,9 @@ class RucModel(tf.keras.models.Model):
         """
         #pylint:disable=C0103
         x, y = data
+        #label is dictionary but our prediction is only a value,
+        #so we need to select the value from label dictionary
+        y = y[self.label]
 
         with tf.GradientTape() as tape:
             y_pred = self(x, training=True)
@@ -79,6 +82,9 @@ class RucModel(tf.keras.models.Model):
         """
         #pylint:disable=C0103
         x, y = data
+        #label is dictionary but our prediction is only a value,
+        #so we need to select the value from label dictionary
+        y = y[self.label]
 
         y_pred = self(x, training=False)
         #pylint:disable=W0612
