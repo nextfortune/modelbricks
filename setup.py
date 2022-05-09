@@ -1,6 +1,7 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=missing-class-docstring
 # pylint: disable=missing-function-docstring
+
 import setuptools
 
 with open('README.md', 'r', encoding="utf-8") as readme:
