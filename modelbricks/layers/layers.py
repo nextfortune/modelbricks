@@ -20,41 +20,42 @@ class TransformLayer(tf.keras.layers.Layer):
         self.dim_type = dim_type
 
         self.features_layers = {}
-        for dim in features_columns['non_sequential'].keys():
-            for dcat in features_columns['non_sequential'][dim].keys():
-                if dcat =='sparse':
-                    for col in range(len(features_columns['non_sequential'][dim][dcat])):
-                        key = features_columns['non_sequential'][dim][dcat][col].name
-                        embedded = tf.feature_column.embedding_column(
-                            features_columns['non_sequential'][dim][dcat][col], dimension=4
-                        )
-                        self.features_layers[key] = tf.keras.layers.DenseFeatures(
-                            embedded, trainable=True
-                        )
-                else:
-                    for col in range(len(features_columns['non_sequential'][dim][dcat])):
-                        key = features_columns['non_sequential'][dim][dcat][col].name
-                        self.features_layers[key] = tf.keras.layers.DenseFeatures(
-                            features_columns['non_sequential'][dim][dcat][col], trainable=True
-                        )
-
-        for dim in features_columns['sequential'].keys():
-            for dcat in features_columns['sequential'][dim].keys():
-                if dcat =='sparse':
-                    for col in range(len(features_columns['sequential'][dim][dcat])):
-                        key = features_columns['sequential'][dim][dcat][col].name
-                        embedded = tf.feature_column.embedding_column(
-                            features_columns['sequential'][dim][dcat][col], dimension=4
-                        )
-                        self.features_layers[key] = tf.keras.experimental.SequenceFeatures(
-                            embedded, trainable=True
-                        )
-                else:
-                    for col in range(len(features_columns['sequential'][dim][dcat])):
-                        key = features_columns['sequential'][dim][dcat][col].name
-                        self.features_layers[key] = tf.keras.experimental.SequenceFeatures(
-                            features_columns['sequential'][dim][dcat][col], trainable=True
-                        )
+        if 'non_sequential' in features_columns.keys():
+            for dim in features_columns['non_sequential'].keys():
+                for dcat in features_columns['non_sequential'][dim].keys():
+                    if dcat =='sparse':
+                        for col in range(len(features_columns['non_sequential'][dim][dcat])):
+                            key = features_columns['non_sequential'][dim][dcat][col].name
+                            embedded = tf.feature_column.embedding_column(
+                                features_columns['non_sequential'][dim][dcat][col], dimension=4
+                            )
+                            self.features_layers[key] = tf.keras.layers.DenseFeatures(
+                                embedded, trainable=True
+                            )
+                    else:
+                        for col in range(len(features_columns['non_sequential'][dim][dcat])):
+                            key = features_columns['non_sequential'][dim][dcat][col].name
+                            self.features_layers[key] = tf.keras.layers.DenseFeatures(
+                                features_columns['non_sequential'][dim][dcat][col], trainable=True
+                            )
+        if 'sequential' in features_columns.keys():
+            for dim in features_columns['sequential'].keys():
+                for dcat in features_columns['sequential'][dim].keys():
+                    if dcat =='sparse':
+                        for col in range(len(features_columns['sequential'][dim][dcat])):
+                            key = features_columns['sequential'][dim][dcat][col].name
+                            embedded = tf.feature_column.embedding_column(
+                                features_columns['sequential'][dim][dcat][col], dimension=4
+                            )
+                            self.features_layers[key] = tf.keras.experimental.SequenceFeatures(
+                                embedded, trainable=True
+                            )
+                    else:
+                        for col in range(len(features_columns['sequential'][dim][dcat])):
+                            key = features_columns['sequential'][dim][dcat][col].name
+                            self.features_layers[key] = tf.keras.experimental.SequenceFeatures(
+                                features_columns['sequential'][dim][dcat][col], trainable=True
+                            )
 
     def get_config(self):
         """Overwirte original get_config function to get config of custom objects
